@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Calculator</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #6f87f3, #8f4fcf);
+        }
+
+        .calculator {
+            width: 350px;
+            padding: 20px;
+            background: #1e1e2f;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+        }
+
+        .title {
+            color: white;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .display {
+            width: 100%;
+            min-height: 70px;
+            background: #11111c;
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            padding: 15px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            font-size: 28px;
+            overflow: hidden;
+            word-break: break-all;
+        }
+
+        .cal {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        button {
+            height: 60px;
+            border: none;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            background: #2f2f46;
+            color: white;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            background: #444461;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* Operators */
+        .operator {
+            background: #ff9f43;
+        }
+
+        .operator:hover {
+            background: #ffb866;
+        }
+
+        /* Clear button */
+        .clear {
+            background: #ee5253;
+        }
+
+        .clear:hover {
+            background: #ff6b6b;
+        }
+
+        /* Equal button */
+        .equal {
+            background: #10ac84;
+        }
+
+        .equal:hover {
+            background: #1dd1a1;
+        }
+
+        @media (max-width: 400px) {
+            .calculator {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calculator">
+
+        <h2 class="title">Calculator</h2>
+
+        <div class="display" id="textfield">0</div>
+
+        <div class="cal">
+
+            <button onclick="parameter(1)">1</button>
+            <button onclick="parameter(2)">2</button>
+            <button onclick="parameter(3)">3</button>
+            <button class="operator" onclick="parameter('+')">+</button>
+
+            <button onclick="parameter(4)">4</button>
+            <button onclick="parameter(5)">5</button>
+            <button onclick="parameter(6)">6</button>
+            <button class="operator" onclick="parameter('-')">−</button>
+
+            <button onclick="parameter(7)">7</button>
+            <button onclick="parameter(8)">8</button>
+            <button onclick="parameter(9)">9</button>
+            <button class="operator" onclick="parameter('*')">×</button>
+
+            <button onclick="parameter(0)">0</button>
+            <button class="operator" onclick="parameter('/')">÷</button>
+            <button class="clear" onclick="cleardisplay()">C</button>
+            <button class="equal" onclick="equal()">=</button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        let d = document.getElementById("textfield");
+
+
+        function parameter(num) {
+
+            if (d.innerText == "0" && num != "0") {
+                d.innerText = "";
+            }
+
+            d.innerText += num;
+        }
+
+
+        function cleardisplay() {
+            d.innerText = "0";
+        }
+
+
+        function equal() {
+
+            try {
+                d.innerText = eval(d.innerText);
+            }
+
+            catch (error) {
+                d.innerText = "Error";
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
